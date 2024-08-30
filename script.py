@@ -347,8 +347,34 @@ def delete_vm():
         logging.error(f"Error deleting VM: {e}")
         raise
 
+def display_final_message():
+    resources = {
+        "Virtual Machine": VM_NAME,
+        "OS Disk": f"{VM_NAME}_osdisk",
+        "Network Interface": NIC_NAME,
+        "Public IP Address": IP_NAME,
+        "Virtual Network": VNET_NAME,
+        "SQL Server": unique_sql_server_name,
+        "SQL Database": SQL_DB_NAME,
+        "Storage Account": unique_storage_account_name,
+    }
+
+    logging.info("\nResources Created:")
+    for resource_type, resource_name in resources.items():
+        logging.info(f"- {resource_type}: {resource_name}")
+    
+    logging.info("\nAll resources have been successfully created.")
+    logging.info("The script has completed its mission. Goodbye!")
+
 if __name__ == "__main__":
-    create_resource_group()
-    create_virtual_machine()
-    setup_sql_database()
-    configure_storage_account()
+    try:
+        create_resource_group()
+        create_virtual_machine()
+        setup_sql_database()
+        configure_storage_account()
+        
+        display_final_message()
+    
+    except Exception as e:
+        logging.error(f"An error occurred during the execution: {e}")
+        raise
