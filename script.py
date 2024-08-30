@@ -19,6 +19,7 @@ from azure.mgmt.network.models import (
 import random
 import string
 
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, filename='azure_management.log', filemode='w',
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -47,6 +48,7 @@ VNET_NAME = 'MyVNet'
 SUBNET_NAME = 'MySubnet'
 IP_NAME = 'MyPublicIP'
 NIC_NAME = 'MyVMNIC'
+
 
 def create_resource_group():
     try:
